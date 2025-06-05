@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_self">
+    <title>Al Fatin Building Maintenance L.L.C</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#046c4e',
+                        dark: '#1f2937',
+                    },
+                    fontFamily: {
+                        arabic: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .arabic-lang {
+            direction: rtl;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .language-switcher {
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="languageSwitcher" class="language-switcher bg-white dark:bg-gray-800 shadow-md rounded-full px-4 py-2 flex items-center gap-2">
+            <span class="en-lang">EN</span>
+            <span class="ar-lang hidden">AR</span>
+            <i class="fas fa-globe"></i>
+        </button>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/971568551731" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-green-600 transition-all z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-primary dark:text-white">Al Fatin <span class="text-secondary">Building Maintenance</span></span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Services</a>
+                    <a href="#portfolio" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Portfolio</a>
+                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">About Us</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Testimonials</a>
+                    <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">Contact Us</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" type="button" class="text-gray-500 dark:text-gray-300 hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Services</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Portfolio</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700">About Us</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-blue-700">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 md:py-32">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="md:flex items-center justify-between">
+                    <div class="md:w-1/2">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Experts in Steel, Aluminium & Pergola Works</h1>
+                        <p class="text-xl mb-8">Your Trusted Maintenance Partner in Ajman, UAE</p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#contact" class="bg-white text-primary px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors">Get a Quote</a>
+                            <a href="#portfolio" class="border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white/10 transition-colors">View Our Work</a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Construction Work" class="rounded-lg shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                        <div class="h-48 bg-blue-600 flex items-center justify-center">
+                            <i class="fas fa-hammer text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Steel & Aluminium Works</h3>
+                            <p class="text-gray-600 dark:text-gray-300">High-quality steel and aluminium fabrication and installation for residential and commercial projects.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                        <div class="h-48 bg-green-600 flex items-center justify-center">
+                            <i class="fas fa-home text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Pergola Design & Installation</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Custom pergola designs that enhance your outdoor living space with style and functionality.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                        <div class="h-48 bg-yellow-600 flex items-center justify-center">
+                            <i class="fas fa-tools text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Maintenance Works</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Comprehensive maintenance solutions to keep your property in top condition year-round.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-16 bg-white dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Portfolio</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto"></div>
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Explore our recent projects showcasing our expertise in steel, aluminium, and pergola works.</p>
+                </div>
+
+                <!-- Portfolio Filter -->
+                <div class="flex justify-center mb-8">
+                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                        <button type="button" class="px-4 py-2 text-sm font-medium rounded-l-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-primary">
+                            All Projects
+                        </button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium border-t border-b border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-primary">
+                            Steel Works
+                        </button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-primary">
+                            Pergolas
+                        </button>
+                        <button type="button" class="px-4 py-2 text-sm font-medium rounded-r-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:z-10 focus:ring-2 focus:ring-primary">
+                            Maintenance
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <div class="project-card relative rounded-lg overflow-hidden shadow-md group">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Steel Structure Project" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Steel Structure Installation</h3>
+                            <p class="text-gray-300 text-center mb-4">Commercial building steel framework installation in Dubai Marina.</p>
+                            <a href="#" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-colors">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card relative rounded-lg overflow-hidden shadow-md group">
+                        <img src="https://images.unsplash.com/photo-1600566752227-8f3e7a8f51d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pergola Project" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Luxury Pergola Design</h3>
+                            <p class="text-gray-300 text-center mb-4">Custom-designed pergola for a private villa in Palm Jumeirah.</p>
+                            <a href="#" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-colors">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card relative rounded-lg overflow-hidden shadow-md group">
+                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Aluminium Works" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Aluminium Cladding</h3>
+                            <p class="text-gray-300 text-center mb-4">Modern aluminium facade installation for office building in Business Bay.</p>
+                            <a href="#" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-colors">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card relative rounded-lg overflow-hidden shadow-md group">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Maintenance Work" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Building Maintenance</h3>
+                            <p class="text-gray-300 text-center mb-4">Complete maintenance package for residential complex in Ajman.</p>
+                            <a href="#" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-colors">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card relative rounded-lg overflow-hidden shadow-md group">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Steel Gate" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Custom Steel Gates</h3>
+                            <p class="text-gray-300 text-center mb-4">Ornamental steel gates for luxury properties across UAE.</p>
+                            <a href="#" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-colors">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card relative rounded-lg overflow-hidden shadow-md group">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Aluminium Pergola" class="w-full h-64 object-cover">
+                        <div class="project-overlay absolute inset-0 bg-black/70 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Aluminium Pergola System</h3>
+                            <p class="text-gray-300 text-center mb-4">Retractable aluminium pergola for beachfront restaurant.</p>
+                            <a href="#" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-colors">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-700">
+                        View All Projects
+                        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="md:flex items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a9e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Team" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">About Al Fatin Building Maintenance</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Established in Ajman, UAE, Al Fatin Building Maintenance L.L.C has been providing top-quality construction and maintenance services for over 10 years. We specialize in steel and aluminium works, pergola design and installation, and comprehensive building maintenance solutions.
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Our team of skilled professionals is committed to delivering exceptional craftsmanship and customer service. We take pride in our attention to detail and our ability to complete projects on time and within budget.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-primary text-xl"></i>
+                                </div>
+                                <span class="text-gray-700 dark:text-gray-300">Licensed & Insured</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-primary text-xl"></i>
+                                </div>
+                                <span class="text-gray-700 dark:text-gray-300">Skilled Professionals</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-primary text-xl"></i>
+                                </div>
+                                <span class="text-gray-700 dark:text-gray-300">Quality Materials</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-primary text-xl"></i>
+                                </div>
+                                <span class="text-gray-700 dark:text-gray-300">Timely Completion</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-700">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-16 bg-white dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Client Testimonials</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto"></div>
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">What our clients say about our work and services</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary text-xl font-bold mr-4">A</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Ahmed Khalifa</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Property Developer</p>
+                            </div>
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-300 mb-4">
+                            <i class="fas fa-quote-left text-primary/30 mr-2"></i>
+                            Al Fatin completed our steel structure project ahead of schedule with exceptional quality. Their team was professional and responsive throughout the process.
+                            <i class="fas fa-quote-right text-primary/30 ml-2"></i>
+                        </div>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary text-xl font-bold mr-4">S</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Sarah Mohammed</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Villa Owner</p>
+                            </div>
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-300 mb-4">
+                            <i class="fas fa-quote-left text-primary/30 mr-2"></i>
+                            The pergola they designed for our backyard is stunning! It's become our favorite outdoor space. The team was creative and attentive to our specific needs.
+                            <i class="fas fa-quote-right text-primary/30 ml-2"></i>
+                        </div>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary text-xl font-bold mr-4">M</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Mohammed Al Rais</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Business Owner</p>
+                            </div>
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-300 mb-4">
+                            <i class="fas fa-quote-left text-primary/30 mr-2"></i>
+                            We've been using Al Fatin for our building maintenance for 3 years now. Reliable, professional, and their work is always top-notch. Highly recommended!
+                            <i class="fas fa-quote-right text-primary/30 ml-2"></i>
+                        </div>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Contact Us</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto"></div>
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Get in touch for inquiries or to request a quote</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-primary focus:border-primary dark:bg-gray-800 dark:text-white" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-primary focus:border-primary dark:bg-gray-800 dark:text-white" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-primary focus:border-primary dark:bg-gray-800 dark:text-white">
+                            </div>
+                            <div class="mb-4">
+                                <label for="service" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Service Needed</label>
+                                <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-primary focus:border-primary dark:bg-gray-800 dark:text-white">
+                                    <option value="">Select a service</option>
+                                    <option value="steel">Steel Works</option>
+                                    <option value="aluminium">Aluminium Works</option>
+                                    <option value="pergola">Pergola Design & Installation</option>
+                                    <option value="maintenance">Maintenance Works</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-primary focus:border-primary dark:bg-gray-800 dark:text-white" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div>
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md mb-6">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-primary/10 dark:bg-primary/20 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900 dark:text-white">Our Location</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Ajman, United Arab Emirates</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-primary/10 dark:bg-primary/20 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900 dark:text-white">Phone Number</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">+971 56 855 1731</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-primary/10 dark:bg-primary/20 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900 dark:text-white">Email Address</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">info@alfatin.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-primary/10 dark:bg-primary/20 p-3 rounded-full text-primary mr-4">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900 dark:text-white">Working Hours</h4>
+                                        <p class="text-gray-600 dark:text-gray-300">Sunday - Thursday: 8:00 AM - 6:00 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <div class="h-96 w-full">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.041384354084!2d55.47227731501193!3d25.31612498383791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d9a6a7a8b1d%3A0x1e3e5f5d9a6a7a8b!2sAjman%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Al Fatin Building Maintenance</h3>
+                    <p class="text-gray-400">Experts in Steel, Aluminium & Pergola Works – Your Trusted Maintenance Partner in Ajman, UAE.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Steel Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Aluminium Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pergola Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <address class="not-italic text-gray-400">
+                        <p class="mb-2">Ajman, UAE</p>
+                        <p class="mb-2">Phone: +971 56 855 1731</p>
+                        <p class="mb-2">Email: info@alfatin.com</p>
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Al Fatin Building Maintenance L.L.C. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Language switcher
+        document.getElementById('languageSwitcher').addEventListener('click', function() {
+            const enLang = document.querySelector('.en-lang');
+            const arLang = document.querySelector('.ar-lang');
+            const html = document.documentElement;
+            
+            if (enLang.classList.contains('hidden')) {
+                // Switch to English
+                enLang.classList.remove('hidden');
+                arLang.classList.add('hidden');
+                html.lang = 'en';
+                html.dir = 'ltr';
+                html.classList.remove('arabic-lang');
+            } else {
+                // Switch to Arabic
+                enLang.classList.add('hidden');
+                arLang.classList.remove('hidden');
+                html.lang = 'ar';
+                html.dir = 'rtl';
+                html.classList.add('arabic-lang');
+            }
+        });
+
+        // Dark mode toggle based on system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
